@@ -20,17 +20,11 @@ public class ItineraryItemPlace {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "itinerary_day_id", nullable = false)
-    private ItineraryDay itineraryDay;
+    @JoinColumn(name = "itinerary_item_id", nullable = false)
+    private ItineraryItem itineraryItem;
 
     @Column(name = "place_id")
     private String placeId;
-
-    @Column(name = "place_name", length = 255)
-    private String placeName;
-
-    @Column(name = "type", length = 20)
-    private String type;
 
     @Column(name = "event_order", nullable = false)
     private Integer eventOrder;
@@ -44,76 +38,26 @@ public class ItineraryItemPlace {
     @Column(name = "cost", nullable = false)
     private BigDecimal cost;
 
-    @Column(name = "memo")
-    private String memo;
-
-    @Column(name = "google_map_url", length = 500)
-    private String googleMapUrl;
-
     protected ItineraryItemPlace() {
     }
 
     public ItineraryItemPlace(
-            ItineraryDay itineraryDay,
+            ItineraryItem itineraryItem,
             String placeId,
-            String placeName,
-            String type,
             Integer eventOrder,
             LocalTime startTime,
             LocalTime durationTime,
-            BigDecimal cost,
-            String memo,
-            String googleMapUrl
+            BigDecimal cost
     ) {
-        this.itineraryDay = itineraryDay;
+        this.itineraryItem = itineraryItem;
         this.placeId = placeId;
-        this.placeName = placeName;
-        this.type = type;
         this.eventOrder = eventOrder;
         this.startTime = startTime;
         this.durationTime = durationTime;
         this.cost = cost;
-        this.memo = memo;
-        this.googleMapUrl = googleMapUrl;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public String getPlaceId() {
-        return placeId;
-    }
-
-    public String getPlaceName() {
-        return placeName;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Integer getEventOrder() {
-        return eventOrder;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public LocalTime getDurationTime() {
-        return durationTime;
-    }
-
-    public BigDecimal getCost() {
-        return cost;
-    }
-
-    public String getMemo() {
-        return memo;
-    }
-
-    public String getGoogleMapUrl() {
-        return googleMapUrl;
     }
 }

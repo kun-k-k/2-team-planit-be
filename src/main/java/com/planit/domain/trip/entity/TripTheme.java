@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "travel_themes")
+@Table(name = "trip_themes")
 public class TripTheme {
 
     @Id
@@ -18,10 +18,10 @@ public class TripTheme {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "travel_id", nullable = false)
+    @JoinColumn(name = "trip_id", nullable = false)
     private Trip trip;
 
-    @Column(name = "name", nullable = false, length = 10)
+    @Column(nullable = false, length = 50)
     private String theme;
 
     protected TripTheme() {
