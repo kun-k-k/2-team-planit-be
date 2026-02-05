@@ -8,28 +8,33 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "itinerary_items")
-public class ItineraryItem {
+@Table(name = "itinerary_days")
+public class ItineraryDay {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "travel_id", nullable = false)
+    @JoinColumn(name = "trip_id", nullable = false)
     private Trip trip;
 
     @Column(name = "day_index", nullable = false)
     private Integer dayIndex;
 
-    protected ItineraryItem() {
+    @Column(name = "date")
+    private LocalDateTime date;
+
+    protected ItineraryDay() {
     }
 
-    public ItineraryItem(Trip trip, Integer dayIndex) {
+    public ItineraryDay(Trip trip, Integer dayIndex, LocalDateTime date) {
         this.trip = trip;
         this.dayIndex = dayIndex;
+        this.date = date;
     }
 
     public Long getId() {
@@ -42,5 +47,9 @@ public class ItineraryItem {
 
     public Integer getDayIndex() {
         return dayIndex;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 }

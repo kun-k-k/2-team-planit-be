@@ -14,6 +14,7 @@ public record TripCreateRequest(
         @NotBlank
         @Size(max = 15)
         String title,
+
         @NotNull
         @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate arrivalDate,
@@ -26,13 +27,15 @@ public record TripCreateRequest(
         @NotNull
         @JsonFormat(pattern = "HH:mm")
         LocalTime departureTime,
+
         @NotBlank
         String travelCity,
         @NotNull
         @Positive
         Integer totalBudget,
+
         @NotEmpty
-        List<@NotBlank String> travelTheme
-        //wantedPlace 필드 추가 (List)
+        List<@NotBlank String> travelTheme,
+        List<@NotBlank String> wantedPlace
 ) {
 }

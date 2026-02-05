@@ -2,14 +2,13 @@ package com.planit.domain.trip.service;
 
 import com.planit.domain.trip.dto.AiItineraryRequest;
 import com.planit.domain.trip.dto.AiItineraryResponse;
-import com.planit.domain.trip.dto.ActivityDto;
-import com.planit.domain.trip.dto.ItineraryDto;
+import com.planit.domain.trip.dto.AiItineraryActivityResponse;
+import com.planit.domain.trip.dto.AiItineraryDayResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -23,7 +22,7 @@ public class AiItineraryClient {
     private final String baseUrl;
     private final boolean mockEnabled;
 
-    //생성자로 client클래스 필드 주입
+    // 생성자로 client 클래스 필드 주입
     public AiItineraryClient(RestTemplate restTemplate,
                              @Value("${ai.base-url:http://localhost:8000}") String baseUrl,
                              @Value("${ai.mock-enabled:false}") boolean mockEnabled) {
@@ -32,7 +31,7 @@ public class AiItineraryClient {
         this.mockEnabled = mockEnabled;
     }
 
-    //ai서버 요청 메서드
+    // AI 서버 요청 메서드
     public AiItineraryResponse requestItinerary(AiItineraryRequest request) {
         if (mockEnabled) {
             //throw new RestClientException("ai서버요청 에러응답 테스트용");
@@ -51,16 +50,83 @@ public class AiItineraryClient {
     private AiItineraryResponse createDummyResponse(AiItineraryRequest request) {
         LocalDate baseDate = request.arrivalDate() != null ? request.arrivalDate() : LocalDate.now();
 
-        ActivityDto activity1 = new ActivityDto("place", "place-1", LocalTime.of(9, 0), 50000, 120, "");
-        ActivityDto activity2 = new ActivityDto("route", null, LocalTime.of(11, 0), null, 30, "");
-        ActivityDto activity3 = new ActivityDto("place", "place-2", LocalTime.of(11, 30), 30000, 180, "");
-        ItineraryDto day1 = new ItineraryDto(1, baseDate, List.of(activity1, activity2, activity3));
+        AiItineraryActivityResponse activity1 =
+                new AiItineraryActivityResponse(
+                        "면식당",
+                        null,
+                        "Restaurant",
+                        1,
+                        LocalTime.of(9, 0),
+                        120,
+                        50000,
+                        "더미 메모",
+                        "https://map.example/1"
+                );
+        AiItineraryActivityResponse activity2 =
+                new AiItineraryActivityResponse(
+                        null,
+                        "bus",
+                        "route",
+                        2,
+                        LocalTime.of(11, 0),
+                        30,
+                        null,
+                        "더미 메모",
+                        null
+                );
+        AiItineraryActivityResponse activity3 =
+                new AiItineraryActivityResponse(
+                        "사자 동굴",
+                        null,
+                        "Attraction",
+                        3,
+                        LocalTime.of(11, 30),
+                        180,
+                        30000,
+                        "더미 메모",
+                        "https://map.example/2"
+                );
+        AiItineraryDayResponse day1 = new AiItineraryDayResponse(1, baseDate, List.of(activity1, activity2, activity3));
 
-        ActivityDto activity4 = new ActivityDto("place", "place-3", LocalTime.of(10, 0), 40000, 90, "");
-        ActivityDto activity5 = new ActivityDto("route", null, LocalTime.of(11, 30), null, 45, "");
-        ActivityDto activity6 = new ActivityDto("place", "place-4", LocalTime.of(12, 15), 60000, 150, "");
-        ItineraryDto day2 = new ItineraryDto(2, baseDate.plusDays(1), List.of(activity4, activity5, activity6));
+        AiItineraryActivityResponse activity4 =
+                new AiItineraryActivityResponse(
+                        "초밥집",
+                        null,
+                        "Restaurant",
+                        1,
+                        LocalTime.of(10, 0),
+                        90,
+                        40000,
+                        "더미 메모",
+                        "https://map.example/3"
+                );
+        AiItineraryActivityResponse activity5 =
+                new AiItineraryActivityResponse(
+                        null,
+                        "walk",
+                        "route",
+                        2,
+                        LocalTime.of(11, 30),
+                        45,
+                        null,
+                        "더미 메모",
+                        null
+                );
+        AiItineraryActivityResponse activity6 =
+                new AiItineraryActivityResponse(
+                        "해변 산책",
+                        null,
+                        "Attraction",
+                        3,
+                        LocalTime.of(12, 15),
+                        150,
+                        60000,
+                        "더미 메모",
+                        "https://map.example/4"
+                );
+        AiItineraryDayResponse day2 =
+                new AiItineraryDayResponse(2, baseDate.plusDays(1), List.of(activity4, activity5, activity6));
 
-        return new AiItineraryResponse("OK", List.of(day1, day2));
+        return new AiItineraryResponse("SUCCESS", request.tripId(), List.of(day1, day2));
     }
 }

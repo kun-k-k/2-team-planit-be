@@ -10,8 +10,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "travel_themes")
-public class TripTheme {
+@Table(name = "wanted_places")
+public class WantedPlace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,22 +21,22 @@ public class TripTheme {
     @JoinColumn(name = "travel_id", nullable = false)
     private Trip trip;
 
-    @Column(name = "name", nullable = false, length = 10)
-    private String theme;
+    @Column(name = "google_map_id", nullable = false, length = 150)
+    private String googleMapId;
 
-    protected TripTheme() {
+    protected WantedPlace() {
     }
 
-    public TripTheme(Trip trip, String theme) {
+    public WantedPlace(Trip trip, String googleMapId) {
         this.trip = trip;
-        this.theme = theme;
+        this.googleMapId = googleMapId;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getTheme() {
-        return theme;
+    public String getGoogleMapId() {
+        return googleMapId;
     }
 }

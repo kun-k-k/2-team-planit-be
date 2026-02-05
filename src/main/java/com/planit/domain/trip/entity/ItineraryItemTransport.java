@@ -19,11 +19,14 @@ public class ItineraryItemTransport {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "itinerary_item_id", nullable = false)
-    private ItineraryItem itineraryItem;
+    @JoinColumn(name = "itinerary_day_id", nullable = false)
+    private ItineraryDay itineraryDay;
 
     @Column(name = "transport", nullable = false, length = 20)
     private String transport;
+
+    @Column(name = "type", length = 20)
+    private String type;
 
     @Column(name = "event_order", nullable = false)
     private Integer eventOrder;
@@ -38,14 +41,16 @@ public class ItineraryItemTransport {
     }
 
     public ItineraryItemTransport(
-            ItineraryItem itineraryItem,
+            ItineraryDay itineraryDay,
             String transport,
+            String type,
             Integer eventOrder,
             LocalTime startTime,
             LocalTime durationTime
     ) {
-        this.itineraryItem = itineraryItem;
+        this.itineraryDay = itineraryDay;
         this.transport = transport;
+        this.type = type;
         this.eventOrder = eventOrder;
         this.startTime = startTime;
         this.durationTime = durationTime;
@@ -53,5 +58,25 @@ public class ItineraryItemTransport {
 
     public Long getId() {
         return id;
+    }
+
+    public String getTransport() {
+        return transport;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Integer getEventOrder() {
+        return eventOrder;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getDurationTime() {
+        return durationTime;
     }
 }

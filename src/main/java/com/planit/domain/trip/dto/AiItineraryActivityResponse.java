@@ -4,13 +4,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalTime;
 
 // AI 응답의 activities[] 요소
-public record ActivityDto(
+public record AiItineraryActivityResponse(
+        String placeName,
+        String transport,
         String type,
-        String placeId,
+        Integer eventOrder,
         @JsonFormat(pattern = "HH:mm")
         LocalTime startTime,
-        Integer cost,
         Integer duration,
-        String memo
+        Integer cost,
+        String memo,
+        String googleMapUrl
 ) {
 }

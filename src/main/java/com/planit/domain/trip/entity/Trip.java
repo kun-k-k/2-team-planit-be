@@ -48,8 +48,6 @@ public class Trip {
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<TripTheme> themes = new ArrayList<>();
 
-    //wantedPlace 필드 추가 (List)
-
     protected Trip() {
     }
 

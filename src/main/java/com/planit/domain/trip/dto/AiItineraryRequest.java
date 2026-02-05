@@ -7,6 +7,7 @@ import java.util.List;
 
 public record AiItineraryRequest(
         Long tripId,
+
         @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate arrivalDate,
         @JsonFormat(pattern = "HH:mm")
@@ -15,9 +16,11 @@ public record AiItineraryRequest(
         LocalDate departureDate,
         @JsonFormat(pattern = "HH:mm")
         LocalTime departureTime,
+
         String travelCity,
         Integer totalBudget,
-        List<String> travelTheme
-        //wantedPlace 필드 추가 (List)
+
+        List<String> travelTheme,
+        List<String> wantedPlace
 ) {
 }

@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.util.List;
 
-public record ItineraryDto(
+public record AiItineraryDayResponse(
         int day,
         @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate date,
-        List<ActivityDto> activities
+        List<AiItineraryActivityResponse> activities
 ) {
 }
