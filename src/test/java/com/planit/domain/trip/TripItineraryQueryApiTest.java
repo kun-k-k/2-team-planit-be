@@ -94,7 +94,8 @@ class TripItineraryQueryApiTest {
                 LocalTime.of(1, 0),
                 BigDecimal.valueOf(10000),
                 "메모",
-                "https://map.example/1"
+                "https://map.example/1",
+                "google-place-1"
         ));
 
         transportRepository.save(new ItineraryItemTransport(
@@ -119,8 +120,10 @@ class TripItineraryQueryApiTest {
                 .andExpect(jsonPath("$.message").value("SUCCESS"))
                 .andExpect(jsonPath("$.data.tripId").value(trip.getId()))
                 .andExpect(jsonPath("$.data.isOwner").value(true))
-                .andExpect(jsonPath("$.data.itineraries[0].dayIndex").value(1))
+                .andExpect(jsonPath("$.data.itineraries[0].day").value(1))
                 .andExpect(jsonPath("$.data.itineraries[0].activities[0].placeName").value("해운대 맛집"))
+                .andExpect(jsonPath("$.data.itineraries[0].activities[0].googleMapUrl").value("https://map.example/1"))
+                .andExpect(jsonPath("$.data.itineraries[0].activities[0].googlePlaceId").value("google-place-1"))
                 .andExpect(jsonPath("$.data.itineraries[0].activities[1].transport").value("bus"));
 
         assertThat(itineraryDayRepository.count()).isEqualTo(beforeDays);

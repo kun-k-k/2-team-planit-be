@@ -74,7 +74,8 @@ public class ItineraryQueryService {
                         resolveDurationMinutes(place.getDurationTime()),
                         place.getCost(),
                         place.getMemo(),
-                        place.getGoogleMapUrl()
+                        place.getGoogleMapUrl(),
+                        place.getGooglePlaceId()
                 ));
             }
 
@@ -89,6 +90,7 @@ public class ItineraryQueryService {
                         transport.getEventOrder(),
                         transport.getStartTime(),
                         resolveDurationMinutes(transport.getDurationTime()),
+                        null,
                         null,
                         null,
                         null

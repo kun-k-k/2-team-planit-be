@@ -50,6 +50,9 @@ public class ItineraryItemPlace {
     @Column(name = "google_map_url", length = 500)
     private String googleMapUrl;
 
+    @Column(name = "google_place_id", length = 255)
+    private String googlePlaceId;
+
     protected ItineraryItemPlace() {
     }
 
@@ -63,7 +66,8 @@ public class ItineraryItemPlace {
             LocalTime durationTime,
             BigDecimal cost,
             String memo,
-            String googleMapUrl
+            String googleMapUrl,
+            String googlePlaceId
     ) {
         this.itineraryDay = itineraryDay;
         this.placeId = placeId;
@@ -75,6 +79,7 @@ public class ItineraryItemPlace {
         this.cost = cost;
         this.memo = memo;
         this.googleMapUrl = googleMapUrl;
+        this.googlePlaceId = googlePlaceId;
     }
 
     public Long getId() {
@@ -117,6 +122,10 @@ public class ItineraryItemPlace {
         return googleMapUrl;
     }
 
+    public String getGooglePlaceId() {
+        return googlePlaceId;
+    }
+
     public void updatePlaceName(String placeName) {
         this.placeName = placeName;
     }
@@ -127,6 +136,10 @@ public class ItineraryItemPlace {
 
     public void updateGoogleMapUrl(String googleMapUrl) {
         this.googleMapUrl = googleMapUrl;
+    }
+
+    public void updateGooglePlaceId(String googlePlaceId) {
+        this.googlePlaceId = googlePlaceId;
     }
 
     public void updateStartTime(LocalTime startTime) {

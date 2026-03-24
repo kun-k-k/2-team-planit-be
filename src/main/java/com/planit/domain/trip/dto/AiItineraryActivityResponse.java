@@ -14,6 +14,7 @@ public record AiItineraryActivityResponse(
         Integer duration,
         Integer cost,
         String memo,
-        String googleMapUrl
+        String googleMapUrl,
+        String googlePlaceId
 ) {
 }
