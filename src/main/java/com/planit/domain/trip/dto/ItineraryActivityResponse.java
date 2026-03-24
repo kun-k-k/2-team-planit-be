@@ -13,6 +13,7 @@ public record ItineraryActivityResponse(
         Integer duration,
         BigDecimal cost,
         String memo,
-        String googleMapUrl
+        String googleMapUrl,
+        String googlePlaceId
 ) {
 }

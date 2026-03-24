@@ -117,7 +117,8 @@ public class AiItineraryProcessor {
                         resolveDuration(activity.duration()),
                         resolveCost(activity.cost()),
                         activity.memo(),
-                        activity.googleMapUrl()
+                        activity.googleMapUrl(),
+                        activity.googlePlaceId()
                     ));
                     log.debug("[AI_PROCESS] place saved dayId={}, name={}", day.getId(), activity.placeName());
                 }

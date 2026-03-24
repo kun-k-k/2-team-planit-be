@@ -20,6 +20,7 @@ import com.planit.domain.trip.config.RedisStreamProperties;
 import com.planit.domain.trip.dto.AiItineraryRequest;
 import com.planit.domain.trip.dto.AiItineraryResponse;
 import com.planit.domain.trip.entity.ItineraryDay;
+import com.planit.domain.trip.entity.ItineraryItemPlace;
 import com.planit.domain.trip.entity.Trip;
 import com.planit.domain.trip.entity.TripStatus;
 import com.planit.domain.trip.entity.TripTheme;
@@ -256,6 +257,11 @@ class TripCreateApiTest {
                 .sum();
         assertThat(placeCount).isEqualTo(4);
         assertThat(transportCount).isEqualTo(2);
+
+        List<ItineraryItemPlace> firstDayPlaces =
+                itineraryItemPlaceRepository.findByItineraryDayIdOrderByEventOrder(days.get(0).getId());
+        assertThat(firstDayPlaces).isNotEmpty();
+        assertThat(firstDayPlaces.get(0).getGooglePlaceId()).isEqualTo("google-place-1");
     }
 
     @Test

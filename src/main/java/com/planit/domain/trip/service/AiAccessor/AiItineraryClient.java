@@ -60,7 +60,8 @@ public class AiItineraryClient {
                         120,
                         50000,
                         "더미 메모",
-                        "https://map.example/1"
+                        "https://map.example/1",
+                        "google-place-1"
                 );
         AiItineraryActivityResponse activity2 =
                 new AiItineraryActivityResponse(
@@ -72,6 +73,7 @@ public class AiItineraryClient {
                         30,
                         null,
                         "더미 메모",
+                        null,
                         null
                 );
         AiItineraryActivityResponse activity3 =
@@ -84,7 +86,8 @@ public class AiItineraryClient {
                         180,
                         30000,
                         "더미 메모",
-                        "https://map.example/2"
+                        "https://map.example/2",
+                        "google-place-2"
                 );
         AiItineraryDayResponse day1 = new AiItineraryDayResponse(1, baseDate, List.of(activity1, activity2, activity3));
 
@@ -98,7 +101,8 @@ public class AiItineraryClient {
                         90,
                         40000,
                         "더미 메모",
-                        "https://map.example/3"
+                        "https://map.example/3",
+                        "google-place-3"
                 );
         AiItineraryActivityResponse activity5 =
                 new AiItineraryActivityResponse(
@@ -110,6 +114,7 @@ public class AiItineraryClient {
                         45,
                         null,
                         "더미 메모",
+                        null,
                         null
                 );
         AiItineraryActivityResponse activity6 =
@@ -122,7 +127,8 @@ public class AiItineraryClient {
                         150,
                         60000,
                         "더미 메모",
-                        "https://map.example/4"
+                        "https://map.example/4",
+                        "google-place-4"
                 );
         AiItineraryDayResponse day2 =
                 new AiItineraryDayResponse(2, baseDate.plusDays(1), List.of(activity4, activity5, activity6));
