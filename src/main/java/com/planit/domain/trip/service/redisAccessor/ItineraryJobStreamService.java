@@ -36,6 +36,7 @@ public class ItineraryJobStreamService {
         return id;
     }
 
+    //AI모킹용 결과큐 발행 메서드
     public RecordId publishResult(Long tripId, String status, AiItineraryResponse response, String errorMessage) {
         Map<String, String> fields = new HashMap<>();
         fields.put("tripId", String.valueOf(tripId));
@@ -48,6 +49,10 @@ public class ItineraryJobStreamService {
         log.info("[STREAM] results XADD tripId={}, status={}, recordId={}", tripId, status, id == null ? "null" : id.getValue());
         return id;
     }
+
+    // AI모킹용 잡상태 갱신 메서드 (추가하기)
+
+
 
     private String toJson(Object value) {
         try {

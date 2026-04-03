@@ -216,6 +216,7 @@ public class TripGroupService {
             allWantedPlaces.addAll(fromJson(member.getWantedPlacesJson()));
         }
 
+        //잡큐잉 지점
         itineraryEnqueueService.enqueueGeneration(
                 trip,
                 new ArrayList<>(allThemes),

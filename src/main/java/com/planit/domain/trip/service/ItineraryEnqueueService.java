@@ -68,6 +68,8 @@ public class ItineraryEnqueueService {
             log.info("[TRIP_CREATE] job status initialized PENDING tripId={}", trip.getId());
             itineraryJobStreamService.enqueueJob(trip.getId(), job.request());
             log.info("[TRIP_CREATE] job enqueued to stream tripId={}", trip.getId());
+
+            // AI모킹 지점
             if (aiMockEnabled) {
                 AiItineraryResponse response = aiItineraryClient.requestItinerary(job.request());
                 log.info("[TRIP_CREATE] mock response generated tripId={}, itineraries={}",

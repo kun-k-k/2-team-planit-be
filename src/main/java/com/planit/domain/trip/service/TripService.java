@@ -140,6 +140,7 @@ public class TripService {
             );
             log.info("[TRIP_CREATE] group waiting created tripId={}, inviteCode={}", trip.getId(), inviteCode);
         } else {
+            //잡큐잉 지점
             itineraryEnqueueService.enqueueGeneration(trip, request.travelTheme(), request.wantedPlace());
         }
 
